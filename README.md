@@ -26,3 +26,12 @@ Check out where you phpunit is installed and run *(hint: disable coverage for th
 
 This will print out a list of services and their time elapsed when instantiating.
 This test will fail, if services will take longer than 50ms.
+
+
+If you want to ignore service id's you can add in your phpunit.xml a global war that holds all service id's colon separated.
+
+```xml
+  <php>
+      <var name="dic-service-benchmark-ignore" value="web_profiler.controller.router,my-service"/>
+  </php>
+```

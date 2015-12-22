@@ -8,9 +8,14 @@ class DicServiceBenchmarkTest extends WebTestCase
 {
     public function testServices()
     {
+        $ignoreServices = [];
         $client = static::createClient();
         $collect = [];
         $warnings = [];
+
+        if (isset($GLOBALS['dic-service-benchmark-ignore'])) {
+            $ignoreServices = explode(',', $GLOBALS['dic-service-benchmark-ignore']);
+        }
 
         foreach($client->getContainer()->getServiceIds() as $serviceId) {
                 $startedAt = microtime(true);
@@ -19,7 +24,9 @@ class DicServiceBenchmarkTest extends WebTestCase
 
                 $collect[] = $this->createEntry($serviceId, $elapsed);
                 if ($elapsed >= 50) {
-                    $warnings[] = $this->createEntry($serviceId, $elapsed);
+                    if(!empty($ignoreServices) && !in_array($serviceId, $ignoreServices)) {
+                        $warnings[] = $this->createEntry($serviceId, $elapsed);
+                    }
                 }
         }
 
