@@ -18,7 +18,7 @@ This bundle contains no code for Runtime, or any services. You don't have to add
 
 ## Usage
 
-Check out where you phpunit is installed and run:
+Check out where you phpunit is installed and run *(hint: disable coverage for this test)*:
 
 ```shell
     bin/phpunit -c app vendor/dawen/dic-service-benchmark-bundle/Dawen/Bundle/DicServiceBenchmarkBundle/Tests/DicServiceBenchmarkTest.php
